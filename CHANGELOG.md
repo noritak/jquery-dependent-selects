@@ -1,5 +1,9 @@
 # jQuery Dependent Selects Change Log
 
+## Version 1.2.3
+
+- Removed unnecessary unselect processing
+
 ## Version 1.2.2
 
 - Allow placeholder value for sub selects through a passed array of strings

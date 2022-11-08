@@ -223,14 +223,12 @@
         current_option_text = $selected_option.html()
 
         for i in [(parseInt $selected_select.attr('data-dependent-depth'))..0]
-          $current_select.find('option').each ->
-            if $(@).html() == current_option_text
-              $(@).prop('selected', true)
-            else
-              $(@).prop('selected', false)
-          
+          $current_select.find('option').filter( ->
+            $(@).text() == current_option_text
+          ).prop 'selected', true
+
           showSelect $current_select
-          if typeof($current_select.attr('data-dependent-path')) != "undefined"
+          if $current_select.is('[data-dependent-path]')
             current_option_text = splitName($current_select.attr('data-dependent-path')).slice(-1)[0];
             $current_select = findSelectParent($current_select)
 

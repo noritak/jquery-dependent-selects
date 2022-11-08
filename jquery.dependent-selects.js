@@ -251,15 +251,11 @@
         $current_select = $selected_select;
         current_option_text = $selected_option.html();
         for (i = j = ref = parseInt($selected_select.attr('data-dependent-depth')); ref <= 0 ? j <= 0 : j >= 0; i = ref <= 0 ? ++j : --j) {
-          $current_select.find('option').each(function() {
-            if ($(this).html() === current_option_text) {
-              return $(this).prop('selected', true);
-            } else {
-              return $(this).prop('selected', false);
-            }
-          });
+          $current_select.find('option').filter(function(index){
+            return $(this).text() === current_option_text;
+          }).prop('selected', true);
           showSelect($current_select);
-          if (typeof ($current_select.attr('data-dependent-path')) !== "undefined") {
+          if ($current_select.is('[data-dependent-path]')) {
             current_option_text = splitName($current_select.attr('data-dependent-path')).slice(-1)[0];
             $current_select = findSelectParent($current_select);
           }
